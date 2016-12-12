@@ -71,14 +71,17 @@ export default React.createClass({
           <VerticalRectSeries
             data={splitColors.r}
             color="red"
+            onNearestX={(x) => setProperty('hoveredRow', x)}
             />
           <VerticalRectSeries
             data={splitColors.g}
             color="green"
+            onNearestX={(x) => setProperty('hoveredRow', x)}
             />
           <VerticalRectSeries
             data={splitColors.b}
             color="blue"
+            onNearestX={(x) => setProperty('hoveredRow', x)}
             />
             <Crosshair
               values={[{x: hoveredRow.x}]}

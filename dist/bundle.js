@@ -42001,15 +42001,24 @@ exports.default = _react2.default.createClass({
           } }),
         _react2.default.createElement(_reactVis.VerticalRectSeries, {
           data: splitColors.r,
-          color: 'red'
+          color: 'red',
+          onNearestX: function onNearestX(x) {
+            return setProperty('hoveredRow', x);
+          }
         }),
         _react2.default.createElement(_reactVis.VerticalRectSeries, {
           data: splitColors.g,
-          color: 'green'
+          color: 'green',
+          onNearestX: function onNearestX(x) {
+            return setProperty('hoveredRow', x);
+          }
         }),
         _react2.default.createElement(_reactVis.VerticalRectSeries, {
           data: splitColors.b,
-          color: 'blue'
+          color: 'blue',
+          onNearestX: function onNearestX(x) {
+            return setProperty('hoveredRow', x);
+          }
         }),
         _react2.default.createElement(_reactVis.Crosshair, {
           values: [{ x: hoveredRow.x }],
@@ -42173,6 +42182,11 @@ exports.default = _react2.default.createClass({
             'div',
             { className: 'color-name' },
             hoveredRow ? hoveredRow.colorName : 'ALL COLORS'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'color-name' },
+            hoveredRow.color
           ),
           _react2.default.createElement(_reactVis.RadialChart, { data: [{ angle: channelSums.r, color: 'red' }, { angle: channelSums.g, color: 'green' }, { angle: channelSums.b, color: 'blue' }], height: 300, width: 300, colorType: 'literal', animation: true })
         )

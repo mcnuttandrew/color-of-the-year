@@ -78,11 +78,14 @@ export default React.createClass({
             <div className="color-name">
               {hoveredRow ? hoveredRow.colorName : 'ALL COLORS'}
             </div>
+            <div className="color-name">
+              {hoveredRow.color}
+            </div>
             <RadialChart data={[
               {angle: channelSums.r, color: 'red'},
               {angle: channelSums.g, color: 'green'},
               {angle: channelSums.b, color: 'blue'}
-            ]} height={300} width={300} colorType="literal" animation={true}/>
+            ]} height={300} width={300} colorType="literal" animation={true}/>            
           </div>
         </div>
       </div>);

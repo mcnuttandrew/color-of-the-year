@@ -314,3 +314,6 @@
 
 .rv-xy-plot__series--rect rect {
   stroke-opacity: 0; }
+
+.rv-radial-chart__series--pie {
+  opacity: 0.5; }
