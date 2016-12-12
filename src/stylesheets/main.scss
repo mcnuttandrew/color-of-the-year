@@ -1,0 +1,92 @@
+@import './node_modules/react-vis/main';
+
+.app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  display: flex;
+  height: 100%;
+}
+
+.project-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 55px;
+  width: 100%;
+
+  .title {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 72px;
+  }
+
+  .subtitle {
+    color: #000000;
+    font-weight: lighter;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 72px;
+  }
+}
+
+.color-block {
+  border: thin solid white;
+  display: flex;
+  flex-direction: column;
+  // height: 128px;
+  padding: 10px;
+
+  &.selected-color-block {
+    border: thin solid black;
+  }
+
+  .color-block-color {
+    height: 70px;
+    width: 70px;
+  }
+
+  .color-block-name {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    max-width: 70px;
+    text-align: justify;
+    text-transform: uppercase;
+    word-break: break-all;
+  }
+}
+
+
+.color-blocks-wrapper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 400px;
+  width: 100%;
+}
+
+.third-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: flex-end;
+
+  .color-name {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.rv-xy-plot__series--rect {
+  rect {
+    stroke-opacity: 0;
+  }
+}
