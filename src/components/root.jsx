@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 import {colors} from '../constants';
 import ColorChannelGraph from './color-channel.jsx';
+import HSLGraph from './hsl-channel.jsx';
 
 import {color} from 'd3-color';
 import {RadialChart} from 'react-vis';
@@ -27,6 +28,7 @@ export default React.createClass({
       'color-block': true,
       'selected-color-block': hoveredRow.x === yearColor.year
     })
+    const d3Color = color(yearColor.color);
     return (
       <div
         onMouseEnter={() => {this.setState({
@@ -38,9 +40,14 @@ export default React.createClass({
         })}}
         className={colorBlockClasses}>
         <div className="color-block-color" style={colorStyle}></div>
+        <div className="color-name">{yearColor.colorName}</div>
+        <RadialChart data={[
+          {angle: d3Color.r, color: 'red'},
+          {angle: d3Color.g, color: 'green'},
+          {angle: d3Color.b, color: 'blue'}
+        ]} height={40} width={40} colorType="literal" animation={true}/>
       </div>
     );
-    // <div className="color-block-name">{yearColor.colorName}</div>
   },
 
   setProperty(nameSpace, value) {
@@ -49,16 +56,6 @@ export default React.createClass({
 
   render() {
     const {hoveredRow} = this.state;
-    const channelSums = colors.reduce((res, row) => {
-      if (hoveredRow && hoveredRow.x !== row.year) {
-        return res;
-      }
-      const d3Color = color(row.color);
-      res.r += d3Color.r;
-      res.g += d3Color.g;
-      res.b += d3Color.b;
-      return res;
-    }, {r: 0, g: 0, b: 0});
 
     return (
       <div className="app">
@@ -67,26 +64,18 @@ export default React.createClass({
           <div className="subtitle">Color of the year </div>
 
         </div>
+        Each year pantone release a new shade of the year. They claim that is "A symbolic color selection; a color snapshot of what we see taking place in our global culture that serves as an expression of a mood and an attitude."
+        Which is neither here nor there. As visualizationists, we want to ensure our colors make sense across a wide variety of media
         <div className="app-content">
           <div className="color-blocks-wrapper">
-            {colors.map(this.renderColorWithName)}
+          {colors.map(this.renderColorWithName)}
           </div>
+          <HSLGraph
+            setProperty={this.setProperty}
+            hoveredRow={this.state.hoveredRow}/>
           <ColorChannelGraph
             setProperty={this.setProperty}
             hoveredRow={this.state.hoveredRow}/>
-          <div className="third-column">
-            <div className="color-name">
-              {hoveredRow ? hoveredRow.colorName : 'ALL COLORS'}
-            </div>
-            <div className="color-name">
-              {hoveredRow.color}
-            </div>
-            <RadialChart data={[
-              {angle: channelSums.r, color: 'red'},
-              {angle: channelSums.g, color: 'green'},
-              {angle: channelSums.b, color: 'blue'}
-            ]} height={300} width={300} colorType="literal" animation={true}/>            
-          </div>
         </div>
       </div>);
   }

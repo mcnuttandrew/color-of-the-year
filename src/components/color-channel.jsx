@@ -5,16 +5,15 @@ import debounce from 'lodash.debounce';
 import {colors} from '../constants';
 
 import {XYPlot, VerticalRectSeries, LineSeries, XAxis, YAxis, Crosshair} from 'react-vis';
-import {color} from 'd3-color';
+import {color, hsl} from 'd3-color';
 
 const splitColors = ['r', 'g', 'b'].reduce((res, colorSig) => {
   res[colorSig] = colors.map((yearColor) => {
-    const d3Color = color(yearColor.color);
-    // const sum = d3Color.r + d3Color.g + d3Color.b;
+    const rgb = color(yearColor.color);
     return {
-      // x0: yearColor.year - 1,
+      x0: yearColor.year - 1,
       x: yearColor.year,
-      y: color(yearColor.color)[colorSig],
+      y: rgb[colorSig],
       color: yearColor.color,
       colorName: yearColor.colorName,
       opacity: 0.7
@@ -22,7 +21,6 @@ const splitColors = ['r', 'g', 'b'].reduce((res, colorSig) => {
   })
   return res;
 }, {});
-
 
 export default React.createClass({
   displayName : 'ColorChannel',
@@ -58,7 +56,14 @@ export default React.createClass({
       // todo make this flexible
       width: 600,
       stackBy: 'y',
-      // yDomain: [0, 1],
+      yType: 'linear'
+    };
+
+    const lineGraphProps = {
+      animation: true,
+      height: 250,
+      // todo make this flexible
+      width: 600,
       yType: 'linear'
     };
 
@@ -88,7 +93,7 @@ export default React.createClass({
               children={(<div></div>)} />
         </XYPlot>
         <XYPlot
-          {...colorChannelProps}>
+          {...lineGraphProps}>
           <LineSeries
             data={splitColors.r}
             color="red"

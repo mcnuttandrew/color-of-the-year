@@ -1,14 +1,21 @@
 @import './node_modules/react-vis/main';
 
+$black: #000;
+$white: #fff;
+
 .app {
   align-items: center;
+  color: $black;
   display: flex;
   flex-direction: column;
+  font-family: GillSans;
 }
 
 .app-content {
+  align-items: center;
   display: flex;
   height: 100%;
+  justify-content: center;
 }
 
 .project-name {
@@ -18,38 +25,33 @@
   width: 100%;
 
   .title {
-    color: #000000;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
     font-size: 72px;
+    font-weight: bold;
   }
 
   .subtitle {
-    color: #000000;
-    font-weight: lighter;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 72px;
+    font-weight: lighter;
   }
 }
 
 .color-block {
-  border: thin solid white;
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  // height: 128px;
-  padding: 10px;
+  justify-content: space-between;
+  width: 200px;
 
-  &.selected-color-block {
-    border: thin solid black;
+  &.selected-color-block .color-block-color {
+    border: thin solid $black;
   }
 
   .color-block-color {
-    height: 70px;
-    width: 70px;
+    border: thin solid $white;
+    height: 10px;
+    width: 30px;
   }
 
   .color-block-name {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: lighter;
     max-width: 70px;
     text-align: justify;
@@ -60,30 +62,14 @@
 
 
 .color-blocks-wrapper {
-  align-items: center;
+  align-items: flex-start;;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
+  flex-direction: column;
   justify-content: flex-end;
-  max-width: 400px;
   width: 100%;
 }
 
-.third-column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 100%;
-  justify-content: flex-end;
-
-  .color-name {
-    color: #000000;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 36px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
 
 .rv-xy-plot__series--rect {
   rect {
@@ -92,5 +78,5 @@
 }
 
 .rv-radial-chart__series--pie {
-  opacity: 0.5;
+  opacity: .5;
 }
