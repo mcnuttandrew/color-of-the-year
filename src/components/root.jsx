@@ -31,6 +31,7 @@ export default React.createClass({
     const d3Color = color(yearColor.color);
     return (
       <div
+        key={`${yearColor.colorName}`}
         onMouseEnter={() => {this.setState({
           hoveredRow: {
             x: yearColor.year,
