@@ -17,4 +17,49 @@ export const colors = [
   {year: 2015, colorName: 'Marsala', color: '#955251'},
   {year: 2016, colorName: 'Rose Quartz', color: '#F7CAC9'},
   {year: 2017, colorName: 'Greenery', color: '#88B04B'}
-]
+];
+/* eslint-disable max-len */
+export const OPENING_COMMENT = 'Each year since the new millenium pantone release a new shade of the year. These colors are meant to evoke a envisioned spirit of the year, a color based gestalt, cultural mood painted in a shade. These colors appear not to have any obvious trend in rgb or hsl. On the right we see the colors grouped by their dominant sub color.';
+export const NEXT_COMMENT = 'It seems like the only reasonable visual investigation would have us comparing the colors against real trends in society:';
+/* eslint-enable max-len */
+
+export const BASEBALL_WINS = [
+  {year: 2000, leagueWin: 'AL'},
+  {year: 2001, leagueWin: 'NL'},
+  {year: 2002, leagueWin: 'AL'},
+  {year: 2003, leagueWin: 'NL'},
+  {year: 2004, leagueWin: 'AL'},
+  {year: 2005, leagueWin: 'AL'},
+  {year: 2006, leagueWin: 'NL'},
+  {year: 2007, leagueWin: 'AL'},
+  {year: 2008, leagueWin: 'NL'},
+  {year: 2009, leagueWin: 'AL'},
+  {year: 2010, leagueWin: 'NL'},
+  {year: 2011, leagueWin: 'NL'},
+  {year: 2012, leagueWin: 'NL'},
+  {year: 2013, leagueWin: 'AL'},
+  {year: 2014, leagueWin: 'NL'},
+  {year: 2015, leagueWin: 'AL'},
+  {year: 2016, leagueWin: 'NL'}
+];
+
+export const GROUNDHOG = [
+  {year: 2000, forecast: 'Shadow'},
+  {year: 2001, forecast: 'Shadow'},
+  {year: 2002, forecast: 'Shadow'},
+  {year: 2003, forecast: 'Shadow'},
+  {year: 2004, forecast: 'Shadow'},
+  {year: 2005, forecast: 'Shadow'},
+  {year: 2006, forecast: 'Shadow'},
+  {year: 2007, forecast: 'No shadow'},
+  {year: 2008, forecast: 'Shadow'},
+  {year: 2009, forecast: 'Shadow'},
+  {year: 2010, forecast: 'No shadow'},
+  {year: 2011, forecast: 'No shadow'},
+  {year: 2012, forecast: 'Shadow'},
+  {year: 2013, forecast: 'No shadow'},
+  {year: 2014, forecast: 'Shadow'},
+  {year: 2015, forecast: 'Shadow'},
+  {year: 2016, forecast: 'No shadow'},
+  {year: 2017, forecast: 'Shadow'}
+];

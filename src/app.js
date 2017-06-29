@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {browserHistory, Router, Route} from 'react-router';
 
-import Root from './components/root.jsx';
+import './stylesheets/main.scss';
+import Root from './components/root.js';
 
-ReactDOM.render((
+const Routes = (
   <Router history={browserHistory}>
-    <Route path="/color-of-the-year/" component={Root}></Route>
-    <Route path="/color-of-the-year" component={Root}></Route>
-    <Route path="/" component={Root}></Route>
+    <Route path="/color-of-the-year/" component={Root} />
+    <Route path="/color-of-the-year" component={Root} />
+    <Route path="/" component={Root} />
   </Router>
-),  document.getElementById('app'))
+);
+
+ReactDOM.render(Routes, document.getElementById('app'));
