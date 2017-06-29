@@ -75,12 +75,14 @@ class ColorTimeline extends React.Component {
         width={700}>
         <YAxis
           orientation={'left'}
-          tickValues={colors.map(clr => clr.year)}
-          tickFormat={t => t} hideLine />
+          tickValues={colors.map(clr => (clr.year + 0.5))}
+          style={{line: {opacity: 0}}}
+          tickFormat={t => t - 0.5}/>
         <YAxis
           orientation={'right'}
-          tickValues={colors.map(clr => clr.year)}
-          tickFormat={t => colorHash[t].colorName} hideLine/>
+          tickValues={colors.map(clr => (clr.year + 0.5))}
+          style={{line: {opacity: 0}}}
+          tickFormat={t => colorHash[t - 0.5].colorName}/>
         <XAxis
           orientation={'top'}
           tickValues={Object.keys(sectionMap)}
