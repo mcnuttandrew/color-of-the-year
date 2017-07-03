@@ -2,6 +2,7 @@
 
 $black: #000;
 $white: #fff;
+$link-blue: #6c8aa4;
 
 .app {
   align-items: center;
@@ -35,8 +36,9 @@ $white: #fff;
 
   .authorship {
     font-size: 12px;
+
     a {
-      color: #6c8aa4;
+      color: $link-blue;
       text-decoration: none;
     }
   }
@@ -65,8 +67,7 @@ $white: #fff;
     flex-direction: column;
   }
 
-  .color-timeline {
-    display: flex;
+  .timeline-wrapper {
     max-width: 100%;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;

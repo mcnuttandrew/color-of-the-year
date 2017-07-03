@@ -53,52 +53,76 @@ const baseballData = BASEBALL_WINS.map((winData) => {
   return {y0: year, y: year + 1, color: leagueWin === 'AL' ? '#3cc' : '#ff3', x: 0.5};
 });
 
-const sectionMap = {
-  0: 'PANTONE COLOR',
-  1: 'GROUNDHOG PREDICTION',
-  1.1: 'BLACK FOR 4 MORE WEEKS OF WINTER',
-  1.5: 'MLB LEAGURE WINNER',
-  1.6: 'AL IN BLUE & NL IN YELLOW',
-  2: 'PRESIDENTIAL PARTY',
-  2.1: 'DEMS IN BLUE & REPUBS IN RED'
-};
+const leapYears = [...new Array(18)].map((year, index) => {
+  return {
+    y0: index + 2000,
+    y: index + 2001,
+    x: 0.5,
+    color: (index % 4 === 0) ? '#000' : '#fff'
+  };
+});
+
+const filler = [...new Array(19)].map((year, i) => ({y0: i + 2000, y: i + 2001, x: 0.1, color: '#fff'}));
+
+const DATASETS = [
+  {data: filler, title: ''},
+  {data: colorData, title: 'PANTONE COLOR'},
+  {data: groundhogData, title: 'GROUNDHOG PREDICTION', subtitle: 'BLACK FOR 4 MORE WEEKS OF WINTER'},
+  {data: leapYears, title: 'LEAP YEARS', subtitle: 'BONUS DAY YEARS IN BLACK'},
+  {data: baseballData, title: 'MLB LEAGURE WINNER', subtitle: 'AL IN BLUE & NL IN YELLOW'},
+  {data: presidentialData, title: 'PRESIDENTIAL PARTY', subtitle: 'DEMS IN BLUE & REPUBS IN RED'}
+];
+
+const sectionMap = DATASETS.reduce((res, set, index) => {
+  const {data, title, subtitle} = set;
+  const xVal = data[0].x + res.runningValue;
+  res[xVal] = title;
+  if (subtitle) {
+    res[xVal + 0.1] = subtitle;
+  }
+  res.runningValue = res.runningValue + data[0].x + (index === 0 ? 0.5 : 0);
+  return res;
+  // magic number of minus for offsetting the pantone correctly
+}, {runningValue: -1});
 
 class ColorTimeline extends React.Component {
   render() {
     return (
-      <XYPlot
-        className="color-timeline"
-        margin={{left: 50, right: 100, top: 150, bottom: 100}}
-        stackBy="x"
-        yDomain={[2018, 2000]}
-        height={550}
-        width={700}>
-        <YAxis
-          orientation={'left'}
-          tickValues={colors.map(clr => (clr.year + 0.5))}
-          style={{line: {opacity: 0}}}
-          tickFormat={t => t - 0.5}/>
-        <YAxis
-          orientation={'right'}
-          tickValues={colors.map(clr => (clr.year + 0.5))}
-          style={{line: {opacity: 0}}}
-          tickFormat={t => colorHash[t - 0.5].colorName}/>
-        <XAxis
-          orientation={'top'}
-          tickValues={Object.keys(sectionMap)}
-          tickLabelAngle={-40}
-          tickFormat={t => sectionMap[t]}
-          style={{
-            line: {opacity: 0},
-            text: {
-              textAnchor: 'start'
-            }
-          }}/>
-        <HorizontalRectSeries data={colorData} colorType="literal"/>
-        <HorizontalRectSeries data={groundhogData} colorType="literal" />
-        <HorizontalRectSeries data={baseballData} colorType="literal"/>
-        <HorizontalRectSeries data={presidentialData} colorType="literal" />
-      </XYPlot>
+      <div className="timeline-wrapper">
+        <XYPlot
+          className="color-timeline"
+          margin={{left: 50, right: 100, top: 150, bottom: 100}}
+          stackBy="x"
+          yDomain={[2018, 2000]}
+          height={550}
+          width={700}>
+          <YAxis
+            orientation={'left'}
+            tickValues={colors.map(clr => (clr.year + 0.5))}
+            style={{line: {opacity: 0}}}
+            tickFormat={t => t - 0.5}/>
+          <YAxis
+            orientation={'right'}
+            tickValues={colors.map(clr => (clr.year + 0.5))}
+            style={{line: {opacity: 0}}}
+            tickFormat={t => colorHash[t - 0.5].colorName}/>
+          <XAxis
+            orientation={'top'}
+            tickValues={Object.keys(sectionMap).filter(title => title !== 'runningValue')}
+            tickLabelAngle={-40}
+            tickFormat={t => sectionMap[t]}
+            style={{
+              line: {opacity: 0},
+              text: {
+                textAnchor: 'start'
+              }
+            }}/>
+          {DATASETS.map((set, index) => {
+            const {data} = set;
+            return <HorizontalRectSeries data={data} key={index} colorType="literal"/>;
+          })}
+        </XYPlot>
+      </div>
     );
   }
 }
