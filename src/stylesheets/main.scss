@@ -73,3 +73,8 @@ $link-blue: #6c8aa4;
     -webkit-overflow-scrolling: touch;
   }
 }
+
+.rv-xy-plot__series--label-text {
+  font-size: 20px;
+  text-anchor: middle !important;
+}

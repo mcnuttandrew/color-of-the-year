@@ -33,9 +33,9 @@ const sortedCMYData = hueColors.reduce((res, row) => {
 
 const CMYdata = {
   children: [
-    {color: '#0aa', children: sortedCMYData.c.sort((a, b) => a.x - b.x)},
-    {color: '#a0a', children: sortedCMYData.m.sort((a, b) => a.x - b.x)},
-    {color: '#cd0', children: sortedCMYData.y.sort((a, b) => a.x - b.x)}
+    {color: '#0dd', children: sortedCMYData.c.sort((a, b) => a.x - b.x)},
+    {color: '#d0d', children: sortedCMYData.m.sort((a, b) => a.x - b.x)},
+    {color: '#dd0', children: sortedCMYData.y.sort((a, b) => a.x - b.x)}
   ]
 };
 
@@ -58,7 +58,7 @@ class ColorTypeSunburst extends React.Component {
         data={useRGB ? RGBdata : CMYdata}
         colorType="literal"
         hideRootNode>
-        <LabelSeries data={[{x: 0, y: 0, label: useRGB ? 'RGB' : 'CMYK'}]} />
+        <LabelSeries data={[{x: 0, y: 10, label: useRGB ? 'RGB' : 'CMYK'}]} />
       </Sunburst>
     );
   }
