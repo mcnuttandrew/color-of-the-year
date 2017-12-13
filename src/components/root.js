@@ -2,7 +2,13 @@ import React from 'react';
 // import HSLGraph from './hsl-channel';
 import ColorTypeSunburst from './color-type-sunburst';
 import ColorTimeline from './color-timeline';
-import {OPENING_COMMENT, NEXT_COMMENT, FINAL_COMMENT} from '../constants';
+import NamesAndBoxes from './names-and-boxes';
+import {
+  FINAL_COMMENT,
+  NEXT_COMMENT,
+  OPENING_COMMENT_1,
+  OPENING_COMMENT_2
+} from '../constants';
 
 class RootComponent extends React.Component {
   render() {
@@ -15,7 +21,9 @@ class RootComponent extends React.Component {
             By <a href="http://www.mcnutt.in/">Andrew McNutt</a>
           </div>
         </div>
-        <div className="text">{OPENING_COMMENT}</div>
+        <div className="text">{OPENING_COMMENT_1}</div>
+        <NamesAndBoxes />
+        <div className="text">{OPENING_COMMENT_2}</div>
         <div className="circles-container">
           <ColorTypeSunburst useRGB />
           <ColorTypeSunburst />

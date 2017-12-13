@@ -2,7 +2,7 @@ import React from 'react';
 
 import {colors} from '../constants';
 
-import {Sunburst, LabelSeries} from 'react-vis';
+import {Sunburst, LabelSeries, Hint} from 'react-vis';
 import {rgb} from 'd3-color';
 
 const hueColors = colors.map((yearColor) => {
@@ -47,8 +47,22 @@ const RGBdata = {
   ]
 };
 
-class ColorTypeSunburst extends React.Component {
+function buildValue(hoveredCell) {
+  const {radius, angle, angle0} = hoveredCell;
+  const truedAngle = (angle + angle0) / 2;
+  return {
+    x: radius * Math.cos(truedAngle),
+    y: radius * Math.sin(truedAngle)
+  };
+}
+
+export default class ColorTypeSunburst extends React.Component {
+  state = {
+    hoveredCell: false
+  }
   render() {
+    const {hoveredCell} = this.state;
+    const {colorName, year} = hoveredCell;
     const {useRGB} = this.props;
     return (
       <Sunburst
@@ -57,11 +71,16 @@ class ColorTypeSunburst extends React.Component {
         width={300}
         data={useRGB ? RGBdata : CMYdata}
         colorType="literal"
+        onValueMouseOver={v => this.setState({hoveredCell: v.x && v.y ? v : false})}
+        onValueMouseOut={v => this.setState({hoveredCell: false})}
         hideRootNode>
+        {hoveredCell && year ? <Hint value={buildValue(hoveredCell)}>
+          <div className="tooltip">
+            {`${year} ~ ${colorName}`}
+          </div>
+        </ Hint> : null}
         <LabelSeries data={[{x: 0, y: 10, label: useRGB ? 'RGB' : 'CMYK'}]} />
       </Sunburst>
     );
   }
 }
-ColorTypeSunburst.displayName = 'ColorTypeSunburst';
-export default ColorTypeSunburst;

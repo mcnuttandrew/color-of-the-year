@@ -43,7 +43,7 @@ const presidentialData = [{
   color: '#00f'
 }, {
   y0: 2017,
-  y: 2018,
+  y: 2019,
   x: 0.5,
   color: '#f00'
 }];
