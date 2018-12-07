@@ -17,7 +17,8 @@ export const colors = [
   {year: 2015, colorName: 'Marsala', color: '#955251'},
   {year: 2016, colorName: 'Rose Quartz', color: '#F7CAC9'},
   {year: 2017, colorName: 'Greenery', color: '#88B04B'},
-  {year: 2018, colorName: 'Ultra Violet', color: '#604b89'}
+  {year: 2018, colorName: 'Ultra Violet', color: '#604b89'},
+  {year: 2019, colorName: 'Living Coral', color: '#FA7268'}
 ];
 /* eslint-disable max-len */
 export const OPENING_COMMENT_1 = 'Each year since the new millennium PANTONE has released a new Color of the Year. These colors are meant to evoke a envisioned spirit of the year, a color based gestalt, a cultural mood painted in light. This color initiative has enjoyed persistent popularity since it was introduced.';
@@ -44,7 +45,8 @@ export const BASEBALL_WINS = [
   {year: 2014, leagueWin: 'NL'},
   {year: 2015, leagueWin: 'AL'},
   {year: 2016, leagueWin: 'NL'},
-  {year: 2017, leagueWin: 'AL'}
+  {year: 2017, leagueWin: 'AL'},
+  {year: 2018, leagueWin: 'AL'}
 ];
 
 export const GROUNDHOG = [
@@ -65,5 +67,6 @@ export const GROUNDHOG = [
   {year: 2014, forecast: 'Shadow'},
   {year: 2015, forecast: 'Shadow'},
   {year: 2016, forecast: 'No shadow'},
-  {year: 2017, forecast: 'Shadow'}
+  {year: 2017, forecast: 'Shadow'},
+  {year: 2018, forecast: 'Shadow'}
 ];

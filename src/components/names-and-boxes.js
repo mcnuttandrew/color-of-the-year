@@ -26,8 +26,6 @@ const colorData = colors.map((yearColor) => {
   };
 });
 
-console.log(colorData)
-
 function getFontColorFromBackground(background) {
   return hsl(background).l > 0.57 ? '#222' : '#eee';
 }

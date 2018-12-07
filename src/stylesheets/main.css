@@ -1,12 +1,7 @@
-@import './node_modules/react-vis/dist/style';
-
-$black: #000;
-$white: #fff;
-$link-blue: #6c8aa4;
 
 .app {
   align-items: center;
-  color: $black;
+  color: #000;
   display: flex;
   flex-direction: column;
   font-family: GillSans;
@@ -23,29 +18,28 @@ $link-blue: #6c8aa4;
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  .title {
-    font-size: 72px;
-    font-weight: bold;
-  }
-
-  .subtitle {
-    font-size: 48px;
-    font-weight: lighter;
-  }
-
-  .authorship {
-    font-size: 12px;
-
-    a {
-      color: $link-blue;
-      text-decoration: none;
-    }
-  }
 }
 
-.text {
-  margin: 10px 0;
+
+.project-name .title {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+
+.project-name .subtitle {
+  font-size: 48px;
+  font-weight: lighter;
+}
+
+
+.project-name .authorship a {
+  color: #6c8aa4;
+  text-decoration: none;
+}
+
+.project-name .authorship {
+  font-size: 12px;
 }
 
 .tooltip {
@@ -61,37 +55,35 @@ $link-blue: #6c8aa4;
   display: flex;
   flex-wrap: wrap;
   max-width: 460px;
+}
 
 
-  .name-box {
-    align-items: center;
-    display: flex;
-    padding: 0 10px;
+.names-boxes .name-box {
+  align-items: center;
+  display: flex;
+  padding: 0 10px;
+}
 
+.names-boxes .color-box {
+  align-items: center;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 70px;
+}
 
-  }
+.names-boxes .color-name {
+  padding: 0 10px;
+  width: 120px;
+  white-space: nowrap;
+}
 
-  .color-box {
-    align-items: center;
-    display: flex;
-    height: 30px;
-    justify-content: center;
-    width: 70px;
-  }
+.names-boxes .reversed .color-name {
+  text-align: right;
+}
 
-  .color-name {
-    padding: 0 10px;
-    width: 120px;
-    white-space: nowrap;
-  }
-
-  .reversed {
-    flex-direction: row-reverse;
-
-    .color-name {
-      text-align: right;
-    }
-  }
+.names-boxes .reversed {
+  flex-direction: row-reverse;
 }
 
 @media screen and (max-width: 576px) {
@@ -99,14 +91,12 @@ $link-blue: #6c8aa4;
     padding: 5%;
   }
 
-  .project-name {
-    .title {
-      font-size: 48px;
-    }
+  .project-name .title {
+    font-size: 48px;
+  }
 
-    .subtitle {
-      font-size: 24px;
-    }
+  .project-name .subtitle {
+    font-size: 24px;
   }
 
   .circles-container {

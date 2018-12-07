@@ -43,7 +43,7 @@ const presidentialData = [{
   color: '#00f'
 }, {
   y0: 2017,
-  y: 2019,
+  y: 2020,
   x: 0.5,
   color: '#f00'
 }];
@@ -53,7 +53,7 @@ const baseballData = BASEBALL_WINS.map((winData) => {
   return {y0: year, y: year + 1, color: leagueWin === 'AL' ? '#3cc' : '#ff3', x: 0.5};
 });
 
-const leapYears = [...new Array(18)].map((year, index) => {
+const leapYears = [...new Array(19)].map((year, index) => {
   return {
     y0: index + 2000,
     y: index + 2001,
@@ -62,7 +62,7 @@ const leapYears = [...new Array(18)].map((year, index) => {
   };
 });
 
-const filler = [...new Array(19)].map((year, i) => ({y0: i + 2000, y: i + 2001, x: 0.1, color: '#fff'}));
+const filler = [...new Array(20)].map((year, i) => ({y0: i + 2000, y: i + 2001, x: 0.1, color: '#fff'}));
 
 const DATASETS = [
   {data: filler, title: ''},
