@@ -1,5 +1,5 @@
 import React from 'react';
-// import HSLGraph from './hsl-channel';
+import HSLGraph from './hsl-channel';
 import ColorTypeSunburst from './color-type-sunburst';
 import ColorTimeline from './color-timeline';
 import NamesAndBoxes from './names-and-boxes';
@@ -21,6 +21,7 @@ class RootComponent extends React.Component {
             By <a href="http://www.mcnutt.in/">Andrew McNutt</a>
           </div>
         </div>
+        <HSLGraph />
         <div className="text">{OPENING_COMMENT_1}</div>
         <NamesAndBoxes />
         <div className="text">{OPENING_COMMENT_2}</div>

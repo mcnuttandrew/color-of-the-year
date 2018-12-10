@@ -16,7 +16,6 @@ const hueColors = colors.map((yearColor) => {
     colorName: yearColor.colorName,
     dominantRGBColor: (r > g && r > b) ? 'r' : ((g > b) ? 'g' : 'b'),
     dominantCMYColor: (c > m && c > y) ? 'c' : ((m > y) ? 'm' : 'y'),
-    // opacity: 0.7,
     size: 1
   };
 });

@@ -20,6 +20,8 @@ export const colors = [
   {year: 2018, colorName: 'Ultra Violet', color: '#604b89'},
   {year: 2019, colorName: 'Living Coral', color: '#FA7268'}
 ];
+
+export const NUM_YEARS = colors.length;
 /* eslint-disable max-len */
 export const OPENING_COMMENT_1 = 'Each year since the new millennium PANTONE has released a new Color of the Year. These colors are meant to evoke a envisioned spirit of the year, a color based gestalt, a cultural mood painted in light. This color initiative has enjoyed persistent popularity since it was introduced.';
 export const OPENING_COMMENT_2 = 'In this page we will celebrate the excellence of this tradition with two visualizations. We will begin with a pair of sunbursts.';
@@ -70,3 +72,20 @@ export const GROUNDHOG = [
   {year: 2017, forecast: 'Shadow'},
   {year: 2018, forecast: 'Shadow'}
 ];
+
+export const presidentialData = [{
+  y0: 2000,
+  y: 2009,
+  x: 0.5,
+  color: '#f00'
+}, {
+  y0: 2009,
+  y: 2017,
+  x: 0.5,
+  color: '#00f'
+}, {
+  y0: 2017,
+  y: 2020,
+  x: 0.5,
+  color: '#f00'
+}];
