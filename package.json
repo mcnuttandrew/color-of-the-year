@@ -22,6 +22,7 @@
     "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "^0.10.1",
+    "node-cssql": "^1.0.2",
     "prop-types": "^15.6.2",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0-rc.3",
@@ -36,7 +37,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --progress --hot --port 3001 --open",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "style": "node src/stylesheets/build-styles.js"
   },
   "babel": {
     "presets": [
