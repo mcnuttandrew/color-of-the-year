@@ -1,61 +1,53 @@
-const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
-const webpack = require('webpack');
-
-const entry = {
-  app: './src/app.js'
-};
-
-const moduleConfig = {
-  rules: [
-    {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'autoprefixer-loader'
-      ]
-    },
-    {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: [/node_modules/]
-    },
-    {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'file-loader?name=public/fonts/[name].[ext]'
-    }
-  ]
-};
-
-const prodConfig = {
-  entry,
-  module: moduleConfig,
-  output: {
-    filename: 'bundle.js'
+const path = require('path');
+module.exports = {
+  entry: {
+    app: './src/app.js'
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
+  output: {
+    path: path.resolve(__dirname, './')
+  },
+  module: {
+    rules: [
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: [/node_modules/]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {plugins: [require('autoprefixer')]}
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: [/node_modules/],
+        query: {
+          presets: ['es2017']
+        }
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  ]
-};
-
-const devConfig = {
-  entry,
-  module: moduleConfig,
+    ]
+  },
   devServer: {
     stats: {
-      warnings: false
+      // Hide children information
+      children: false,
+      // Set the maximum number of modules to be shown
+      maxModules: 0
     }
   },
-  output: {
-    filename: 'bundle.js'
-  },
-
-  devtool: 'source-maps'
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development', // eslint-disable-line
+  devtool:
+    // eslint-disable-line
+    process.env.NODE_ENV === 'production'
+      ? 'source-map'
+      : 'cheap-module-source-map'
 };
-
-module.exports = isProd ? prodConfig : devConfig;

@@ -1,6 +1,12 @@
 import React from 'react';
 
-import {colors, BASEBALL_WINS, GROUNDHOG, presidentialData, NUM_YEARS} from '../constants';
+import {
+  colors,
+  BASEBALL_WINS,
+  GROUNDHOG,
+  presidentialData,
+  NUM_YEARS
+} from '../constants';
 
 import {XYPlot, PolygonSeries, YAxis, XAxis} from 'react-vis';
 
@@ -32,21 +38,37 @@ const baseballData = BASEBALL_WINS.map(({leagueWin, year}) => ({
 const leapYears = [...new Array(NUM_YEARS)].map((year, index) => ({
   y0: index + 2000,
   y: index + 2001,
-  color: (index % 4 === 0) ? '#000' : '#fff'
+  color: index % 4 === 0 ? '#000' : '#fff'
 }));
 
 let currentSum = 0;
-const DATASETS = [{
-  data: colorData, title: 'PANTONE COLOR', width: 1.0
-}, {
-  data: groundhogData, title: 'GROUNDHOG PREDICTION', subtitle: 'BLACK FOR 4 MORE WEEKS OF WINTER'
-}, {
-  data: leapYears, title: 'LEAP YEARS', subtitle: 'BONUS DAY YEARS IN BLACK'
-}, {
-  data: baseballData, title: 'MLB LEAGURE WINNER', subtitle: 'AL IN BLUE & NL IN YELLOW'
-}, {
-  data: presidentialData, title: 'PRESIDENTIAL PARTY', subtitle: 'DEMS IN BLUE & REPUBS IN RED'
-}].map(row => {
+const DATASETS = [
+  {
+    data: colorData,
+    title: 'PANTONE COLOR',
+    width: 1.0
+  },
+  {
+    data: groundhogData,
+    title: 'GROUNDHOG PREDICTION',
+    subtitle: 'BLACK FOR 4 MORE WEEKS OF WINTER'
+  },
+  {
+    data: leapYears,
+    title: 'LEAP YEARS',
+    subtitle: 'BONUS DAY YEARS IN BLACK'
+  },
+  {
+    data: baseballData,
+    title: 'MLB LEAGURE WINNER',
+    subtitle: 'AL IN BLUE & NL IN YELLOW'
+  },
+  {
+    data: presidentialData,
+    title: 'PRESIDENTIAL PARTY',
+    subtitle: 'DEMS IN BLUE & REPUBS IN RED'
+  }
+].map(row => {
   const newRow = {...row, leftEdge: currentSum};
   if (!newRow.width) {
     newRow.width = 0.5;
@@ -57,26 +79,31 @@ const DATASETS = [{
 
 const cells = DATASETS.reduce((acc, row) => {
   const {width, leftEdge, data} = row;
-  return acc.concat(data.map(({y, y0, color}) => {
-    return {
-      data: [
-        {x: leftEdge, y},
-        {x: leftEdge, y: y0},
-        {x: leftEdge + width, y: y0},
-        {x: leftEdge + width, y}
-      ],
-      color
-    };
-  }));
+  return acc.concat(
+    data.map(({y, y0, color}) => {
+      return {
+        data: [
+          {x: leftEdge, y},
+          {x: leftEdge, y: y0},
+          {x: leftEdge + width, y: y0},
+          {x: leftEdge + width, y}
+        ],
+        color
+      };
+    })
+  );
 }, []);
 
-const sectionMap = DATASETS.reduce((res, {title, subtitle, leftEdge}, index) => {
-  res[leftEdge] = title;
-  if (subtitle) {
-    res[leftEdge + 0.1] = subtitle;
-  }
-  return res;
-}, {});
+const sectionMap = DATASETS.reduce(
+  (res, {title, subtitle, leftEdge}, index) => {
+    res[leftEdge] = title;
+    if (subtitle) {
+      res[leftEdge + 0.1] = subtitle;
+    }
+    return res;
+  },
+  {}
+);
 
 class ColorTimeline extends React.Component {
   render() {
@@ -88,17 +115,20 @@ class ColorTimeline extends React.Component {
           xDomain={[0, currentSum]}
           yDomain={[2000 + NUM_YEARS, 2000]}
           height={550}
-          width={700}>
+          width={700}
+        >
           <YAxis
             orientation={'left'}
-            tickValues={colors.map(clr => (clr.year + 0.5))}
+            tickValues={colors.map(clr => clr.year + 0.5)}
             style={{line: {opacity: 0}}}
-            tickFormat={t => t - 0.5}/>
+            tickFormat={t => t - 0.5}
+          />
           <YAxis
             orientation={'right'}
-            tickValues={colors.map(clr => (clr.year + 0.5))}
+            tickValues={colors.map(clr => clr.year + 0.5)}
             style={{line: {opacity: 0}}}
-            tickFormat={t => colorHash[t - 0.5].colorName}/>
+            tickFormat={t => colorHash[t - 0.5].colorName}
+          />
           <XAxis
             orientation={'top'}
             tickValues={Object.keys(sectionMap)}
@@ -109,9 +139,14 @@ class ColorTimeline extends React.Component {
               text: {
                 textAnchor: 'start'
               }
-            }}/>
+            }}
+          />
           {cells.map(({data, color}, index) => (
-            <PolygonSeries data={data} color={color} key={`${index}-${color}`}/>
+            <PolygonSeries
+              data={data}
+              color={color}
+              key={`${index}-${color}`}
+            />
           ))}
         </XYPlot>
       </div>

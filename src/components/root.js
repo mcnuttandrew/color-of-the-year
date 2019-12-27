@@ -32,7 +32,8 @@ class RootComponent extends React.Component {
         <div className="text">{NEXT_COMMENT}</div>
         <ColorTimeline />
         <div className="text">{FINAL_COMMENT}</div>
-      </div>);
+      </div>
+    );
   }
 }
 RootComponent.displayName = 'RootComponent';

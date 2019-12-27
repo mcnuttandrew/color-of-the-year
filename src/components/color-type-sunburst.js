@@ -5,7 +5,7 @@ import {colors} from '../constants';
 import {Sunburst, LabelSeries, Hint} from 'react-vis';
 import {rgb} from 'd3-color';
 
-const hueColors = colors.map((yearColor) => {
+const hueColors = colors.map(yearColor => {
   const {r, g, b} = rgb(yearColor.color);
   const c = (b + g) / 2;
   const m = (r + b) / 2;
@@ -14,21 +14,27 @@ const hueColors = colors.map((yearColor) => {
     year: yearColor.year,
     color: yearColor.color,
     colorName: yearColor.colorName,
-    dominantRGBColor: (r > g && r > b) ? 'r' : ((g > b) ? 'g' : 'b'),
-    dominantCMYColor: (c > m && c > y) ? 'c' : ((m > y) ? 'm' : 'y'),
+    dominantRGBColor: r > g && r > b ? 'r' : g > b ? 'g' : 'b',
+    dominantCMYColor: c > m && c > y ? 'c' : m > y ? 'm' : 'y',
     size: 1
   };
 });
 
-const sortedRGBData = hueColors.reduce((res, row) => {
-  res[row.dominantRGBColor].push(row);
-  return res;
-}, {r: [], g: [], b: []});
+const sortedRGBData = hueColors.reduce(
+  (res, row) => {
+    res[row.dominantRGBColor].push(row);
+    return res;
+  },
+  {r: [], g: [], b: []}
+);
 
-const sortedCMYData = hueColors.reduce((res, row) => {
-  res[row.dominantCMYColor].push(row);
-  return res;
-}, {c: [], m: [], y: []});
+const sortedCMYData = hueColors.reduce(
+  (res, row) => {
+    res[row.dominantCMYColor].push(row);
+    return res;
+  },
+  {c: [], m: [], y: []}
+);
 
 const CMYdata = {
   children: [
@@ -58,7 +64,7 @@ function buildValue(hoveredCell) {
 export default class ColorTypeSunburst extends React.Component {
   state = {
     hoveredCell: false
-  }
+  };
   render() {
     const {hoveredCell} = this.state;
     const {colorName, year} = hoveredCell;
@@ -70,14 +76,17 @@ export default class ColorTypeSunburst extends React.Component {
         width={300}
         data={useRGB ? RGBdata : CMYdata}
         colorType="literal"
-        onValueMouseOver={v => this.setState({hoveredCell: v.x && v.y ? v : false})}
+        onValueMouseOver={v =>
+          this.setState({hoveredCell: v.x && v.y ? v : false})
+        }
         onValueMouseOut={v => this.setState({hoveredCell: false})}
-        hideRootNode>
-        {hoveredCell && year ? <Hint value={buildValue(hoveredCell)}>
-          <div className="tooltip">
-            {`${year} ~ ${colorName}`}
-          </div>
-        </ Hint> : null}
+        hideRootNode
+      >
+        {hoveredCell && year ? (
+          <Hint value={buildValue(hoveredCell)}>
+            <div className="tooltip">{`${year} ~ ${colorName}`}</div>
+          </Hint>
+        ) : null}
         <LabelSeries data={[{x: 0, y: 10, label: useRGB ? 'RGB' : 'CMYK'}]} />
       </Sunburst>
     );

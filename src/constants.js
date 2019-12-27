@@ -18,15 +18,20 @@ export const colors = [
   {year: 2016, colorName: 'Rose Quartz', color: '#F7CAC9'},
   {year: 2017, colorName: 'Greenery', color: '#88B04B'},
   {year: 2018, colorName: 'Ultra Violet', color: '#604b89'},
-  {year: 2019, colorName: 'Living Coral', color: '#FA7268'}
+  {year: 2019, colorName: 'Living Coral', color: '#FA7268'},
+  {year: 2020, colorName: 'Classic Blue', color: '#0e4a80'}
 ];
 
 export const NUM_YEARS = colors.length;
 /* eslint-disable max-len */
-export const OPENING_COMMENT_1 = 'Each year since the new millennium PANTONE has released a new Color of the Year. These colors are meant to evoke a envisioned spirit of the year, a color based gestalt, a cultural mood painted in light. This color initiative has enjoyed persistent popularity since it was introduced.';
-export const OPENING_COMMENT_2 = 'In this page we will celebrate the excellence of this tradition with two visualizations. We will begin with a pair of sunbursts.';
-export const NEXT_COMMENT = 'Here we see each of the 18 colors sorted by their their dominant light component in two color schemes, Red/Green/Blue and Cyan/Magenta/Yellow respectively. This technique suggests to us that it is significantly more likely for PANTONE to select a color that is predominantly red (specifically it is nearly four times more likely to pick a red color than a blue one). While sunbursts are easily criticized for their relationship to the dreaded pie chart, they are quite effective for compactly describing tree based and part to whole relationships, such as what we see above.';
-export const FINAL_COMMENT = 'In the above, we consider the colors more in the spirit that we are asked to: as a mirror of our culture. To get a good view of this, we present the colors in the context of other on going processes that might we might be familiar with. I argue that singular events might be more striking in our memory (who doesn’t remember the day Obama was first elected), but the long term events that we know well, such as whether or not Punxsutawney Phil will see his shadow, are more evocative of everyday life, simply because we live with those moments more often.';
+export const OPENING_COMMENT_1 =
+  'Each year since the new millennium PANTONE has released a new Color of the Year. These colors are meant to evoke a envisioned spirit of the year, a color based gestalt, a cultural mood painted in light. This color initiative has enjoyed persistent popularity since it was introduced.';
+export const OPENING_COMMENT_2 =
+  'In this page we will celebrate the excellence of this tradition with two visualizations. We will begin with a pair of sunbursts.';
+export const NEXT_COMMENT =
+  'Here we see each of the 18 colors sorted by their their dominant light component in two color schemes, Red/Green/Blue and Cyan/Magenta/Yellow respectively. This technique suggests to us that it is significantly more likely for PANTONE to select a color that is predominantly red (specifically it is nearly four times more likely to pick a red color than a blue one). While sunbursts are easily criticized for their relationship to the dreaded pie chart, they are quite effective for compactly describing tree based and part to whole relationships, such as what we see above.';
+export const FINAL_COMMENT =
+  'In the above, we consider the colors more in the spirit that we are asked to: as a mirror of our culture. To get a good view of this, we present the colors in the context of other on going processes that might we might be familiar with. I argue that singular events might be more striking in our memory (who doesn’t remember the day Obama was first elected), but the long term events that we know well, such as whether or not Punxsutawney Phil will see his shadow, are more evocative of everyday life, simply because we live with those moments more often.';
 /* eslint-enable max-len */
 
 export const BASEBALL_WINS = [
@@ -48,7 +53,8 @@ export const BASEBALL_WINS = [
   {year: 2015, leagueWin: 'AL'},
   {year: 2016, leagueWin: 'NL'},
   {year: 2017, leagueWin: 'AL'},
-  {year: 2018, leagueWin: 'AL'}
+  {year: 2018, leagueWin: 'AL'},
+  {year: 2019, leagueWin: 'NL'}
 ];
 
 export const GROUNDHOG = [
@@ -70,22 +76,27 @@ export const GROUNDHOG = [
   {year: 2015, forecast: 'Shadow'},
   {year: 2016, forecast: 'No shadow'},
   {year: 2017, forecast: 'Shadow'},
-  {year: 2018, forecast: 'Shadow'}
+  {year: 2018, forecast: 'Shadow'},
+  {year: 2019, forecast: 'No shadow'}
 ];
 
-export const presidentialData = [{
-  y0: 2000,
-  y: 2009,
-  x: 0.5,
-  color: '#f00'
-}, {
-  y0: 2009,
-  y: 2017,
-  x: 0.5,
-  color: '#00f'
-}, {
-  y0: 2017,
-  y: 2020,
-  x: 0.5,
-  color: '#f00'
-}];
+export const presidentialData = [
+  {
+    y0: 2000,
+    y: 2009,
+    x: 0.5,
+    color: '#f00'
+  },
+  {
+    y0: 2009,
+    y: 2017,
+    x: 0.5,
+    color: '#00f'
+  },
+  {
+    y0: 2017,
+    y: 2021,
+    x: 0.5,
+    color: '#f00'
+  }
+];
